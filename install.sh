@@ -14,7 +14,7 @@ sudo su root <<'EOF'
 
 # Pacman update and installs
 pacman -Syu
-pacman -S python-pip curl libffi swig tcpdump python-virtualenv openssl wine mingw-w64
+pacman -S python-pip curl libffi swig tcpdump python-virtualenv openssl wine mingw-w64 python2 python3
 
 # Install Docker
 pacman -S docker docker-compose
@@ -34,4 +34,4 @@ EOF
 
 cd
 cd pupy-arch/
-./create-workspace.py -E docker -P pupy-workspace
+python2 create-workspace.py -E docker -P pupy-workspace
