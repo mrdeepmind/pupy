@@ -12,36 +12,26 @@ username=$(whoami)
 # Start root section
 sudo su root <<'EOF'
 
-# Apt update and installs
-apt update
-apt install python-pip curl -y
+# Pacman update and installs
+pacman -Syu
+pacman -S python-pip curl libffi swig tcpdump python-virtualenv openssl
 
 # Install Docker
-curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-
-if [ -f /etc/apt/sources.list.d/docker.list ]; then
-    echo "Apt source entry exists, skipping."
-else
-    echo 'deb https://download.docker.com/linux/debian stretch stable' > /etc/apt/sources.list.d/docker.list
-fi
-
-apt update
-apt-get install docker-ce -y
-systemctl start docker
-systemctl enable docker
+pacman -S docker docker-compose
+systemctl enable docker.service
+systemctl enable docker.socket
+systemctl enable containerd.service
+systemctl start docker.service
+systemctl start docker.socket
+systemctl start containerd.service
 
 # Add user to docker group
-usermod -aG docker $username
+groupadd docker
+usermod -aG docker $USER
 
 # End of root section
 EOF
 
-PYTHON=python
-
-$PYTHON --help >/dev/null
-if [ ! $? -eq 0 ]; then
-  PYTHON=python3
-fi
-
-# Create workspace at ~/pupyws
-${PYTHON} create-workspace.py -E docker -P $HOME/pupyws
+cd
+cd pupy-arch/
+./create-workspace.py -E docker -P pupy-workspace
