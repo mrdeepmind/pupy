@@ -32,6 +32,12 @@ usermod -aG docker $USER
 # End of root section
 EOF
 
-cd
-cd pupy-arch/
-python2 create-workspace.py -E docker -P pupy-workspace
+PYTHON=python
+
+$PYTHON --help >/dev/null
+if [ ! $? -eq 0 ]; then
+  PYTHON=python3
+fi
+
+# Create workspace at ~/pupyws
+${PYTHON} create-workspace.py -E docker -P $HOME/pupy-workspace
