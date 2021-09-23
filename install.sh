@@ -14,7 +14,7 @@ sudo su root <<'EOF'
 
 # Pacman update and installs
 pacman -Syu
-pacman -S python-pip curl libffi swig tcpdump python-virtualenv openssl
+pacman -S python-pip curl libffi swig tcpdump python-virtualenv openssl wine mingw-w64
 
 # Install Docker
 pacman -S docker docker-compose
