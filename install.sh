@@ -41,3 +41,5 @@ fi
 
 # Create workspace at ~/pupyws
 ${PYTHON} create-workspace.py -E docker -P $HOME/pupy-workspace
+
+print("If building process does not start, go into your pupy-arch folder and execute ./create-workspace.py by sudo.")
