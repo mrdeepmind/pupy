@@ -1,4 +1,4 @@
-# Pupy
+# Pupy Arch
 
 [![Build Status](https://api.travis-ci.org/n1nj4sec/pupy.svg?branch=unstable)](https://travis-ci.org/n1nj4sec/pupy)
 
