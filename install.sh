@@ -18,13 +18,7 @@ pacman -S python-pip curl libffi swig tcpdump python-virtualenv openssl wine min
 
 # Install Docker
 pacman -S docker docker-compose
-systemctl enable docker.service
-systemctl enable docker.socket
-systemctl enable containerd.service
-systemctl start docker.service
-systemctl start docker.socket
-systemctl start containerd.service
-
+systemctl enable --now docker containerd
 # Add user to docker group
 groupadd docker
 usermod -aG docker $USER
@@ -42,4 +36,4 @@ fi
 # Create workspace at ~/pupyws
 ${PYTHON} create-workspace.py -E docker -P $HOME/pupy-workspace
 
-print("If building process does not start, go into your pupy-arch folder and execute ./create-workspace.py by sudo.")
+# Don't run this, pick the things you like.
